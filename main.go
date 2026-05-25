@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"bufio"
+	"os"
+	"strings"
 
 	"todo/internal/storange"
 )
@@ -12,5 +15,10 @@ func main() {
 		fmt.Println("Erro ao carregar as tarefas", err)
 		return
 	}
-	fmt.Println(tasks)
-}
+	//title tarefa
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Digite o nome d tarefa: ")
+	title, _ :=reader.ReadString('\n')
+	title, strings.TrimSpace(title)
+	//description tarefa
+	//completed
