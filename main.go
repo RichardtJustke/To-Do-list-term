@@ -18,15 +18,22 @@ func main() {
 	}
 
 	// escrever tarefa e salvar
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Digite o nome d tarefa: ")
+
+	reader := bufio.NewReader(os.Stdin) // aqui lê o input do usuario não pode repetir!
+	fmt.Print("Digite o nome da tarefa: ")
 	title, _ := reader.ReadString('\n')
 	title = strings.TrimSpace(title)
 
+	// escrever descrição da tarefa
+	fmt.Print("Digite a descrição da tarefa: ")
+	description, _ := reader.ReadString('\n')
+	description = strings.TrimSpace(description)
+
 	newTask := models.Task{
-		ID:        len(tasks) + 1,
-		Title:     title,
-		Completed: false,
+		ID:          len(tasks) + 1,
+		Title:       title,
+		Description: description,
+		Completed:   false,
 	}
 	tasks = append(tasks, newTask)
 	err = storange.SaveTasks(tasks)
@@ -35,6 +42,4 @@ func main() {
 		return
 	}
 	fmt.Println("Tarefa adicionada com sucesso!")
-
-	// escrever descrição da tarefa
 }
