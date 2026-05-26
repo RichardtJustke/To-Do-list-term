@@ -17,18 +17,15 @@ func main() {
 		return
 	}
 
-
-
-	//escrever tarefa e salvar 
+	// escrever tarefa e salvar
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Digite o nome d tarefa: ")
-	title, _ :=reader.ReadString('\n')
-	title, strings.TrimSpace(title)
-
+	title, _ := reader.ReadString('\n')
+	title = strings.TrimSpace(title)
 
 	newTask := models.Task{
-		ID: len(task) +1,
-		Title: title,
+		ID:        len(tasks) + 1,
+		Title:     title,
 		Completed: false,
 	}
 	tasks = append(tasks, newTask)
@@ -38,4 +35,6 @@ func main() {
 		return
 	}
 	fmt.Println("Tarefa adicionada com sucesso!")
+
+	// escrever descrição da tarefa
 }
