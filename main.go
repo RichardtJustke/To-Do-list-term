@@ -6,40 +6,36 @@ import (
 	"os"
 	"strings"
 
+	"todo/internal/commands"
 	"todo/internal/models"
 	"todo/internal/storange"
 )
 
 func main() {
-	tasks, err := storange.LoadTasks()
-	if err != nil {
-		fmt.Println("Erro ao carregar as tarefas", err)
+	if len(os.Args)<2{
+		fmt.Println("use: todo [add|view|delete|completed|edit]")
 		return
 	}
+	command := os.Args[1]
+	
+	switch command{
+	
+	case "add":
+		commands.noteAdd()
 
-	// escrever tarefa e salvar
+	case "delete":
+		commands.noteDelete()
 
-	reader := bufio.NewReader(os.Stdin) // aqui lê o input do usuario não pode repetir!
-	fmt.Print("Digite o nome da tarefa: ")
-	title, _ := reader.ReadString('\n')
-	title = strings.TrimSpace(title)
+	case "comp":
+		commands.noteComplete()
+	
+	case "view"
+		commands.noteView()
+	
+	case "edit"
+		commands.noteEdit()
 
-	// escrever descrição da tarefa
-	fmt.Print("Digite a descrição da tarefa: ")
-	description, _ := reader.ReadString('\n')
-	description = strings.TrimSpace(description)
-
-	newTask := models.Task{
-		ID:          len(tasks) + 1,
-		Title:       title,
-		Description: description,
-		Completed:   false,
 	}
-	tasks = append(tasks, newTask)
-	err = storange.SaveTasks(tasks)
-	if err != nil {
-		fmt.Println("Erro ao salvar:", err)
-		return
-	}
-	fmt.Println("Tarefa adicionada com sucesso!")
+
 }
+
