@@ -1,25 +1,19 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
-	"strings"
-
-	"todo/internal/commands"
-	"todo/internal/models"
-	"todo/internal/storange"
 )
 
 func main() {
-	if len(os.Args)<2{
+	if len(os.Args) < 2 {
 		fmt.Println("use: todo [add|view|delete|completed|edit]")
 		return
 	}
 	command := os.Args[1]
-	
-	switch command{
-	
+
+	switch command {
+
 	case "add":
 		commands.noteAdd()
 
@@ -28,14 +22,12 @@ func main() {
 
 	case "comp":
 		commands.noteComplete()
-	
-	case "view"
+
+	case "view":
 		commands.noteView()
-	
-	case "edit"
+
+	case "edit":
 		commands.noteEdit()
 
 	}
-
 }
-
